@@ -221,7 +221,7 @@ Full operational checklist: [docs/DEPLOY_AND_DEVELOP.md](./docs/DEPLOY_AND_DEVEL
 5. **Seed** DynamoDB: `npm run seed` (unless `RUN_SEED=1` was used during provision).
 6. **Connect** Studio to `mcp-server/` and open the **Supply chain** widget; use **web-portal** for browser OIDC testing.
 
-**Optional SAM reference:** an archived SAM copy lives under **`backup/sam-stack-archived/`** (gitignored except `backup/README.md`). The documented production path is **Terraform** only. See [backup/README.md](./backup/README.md).
+**Optional SAM reference:** an archived SAM copy may exist locally under **`backup/sam-stack-archived/`** (the whole **`backup/`** tree is gitignored). The documented production path is **Terraform** only.
 
 ---
 
@@ -255,7 +255,7 @@ supply-chain/
   web-portal/               # Vite + React OIDC client
   infrastructure/terraform/ # Production IaC (Terraform)
   scripts/                  # provision, seed, write-generated-env
-  backup/                   # Local archive (gitignored); see backup/README.md
+  backup/                   # Local-only archive (gitignored, not in version control)
   docs/
 ```
 

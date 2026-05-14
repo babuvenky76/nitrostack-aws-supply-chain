@@ -6,8 +6,7 @@ out/
 .generated/
 .mcp-bootstrap-error.log
 .supply-chain-runtime.log
-backup/**
-!backup/README.md
+backup/
 **/.next/
 **/out/
 *.zip

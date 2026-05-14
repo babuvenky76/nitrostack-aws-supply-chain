@@ -63,4 +63,4 @@ npm install && npm run dev
 
 ## SAM path (archived)
 
-An optional **SAM** stack was moved to **`backup/sam-stack-archived/`** (see [backup/README.md](../backup/README.md)). It does not mirror the Terraform unified secret and `.generated/.env` flow. **Use Terraform** for the documented end-to-end path.
+An optional **SAM** stack may exist locally under **`backup/sam-stack-archived/`** (the **`backup/`** directory is gitignored). It does not mirror the Terraform unified secret and `.generated/.env` flow. **Use Terraform** for the documented end-to-end path.
