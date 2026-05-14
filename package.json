@@ -1,0 +1,30 @@
+{
+  "name": "@nitrostack-demo/aws-supply-chain",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "NitroStack + AWS supply-chain reference (Cognito, API Gateway HTTP API, Lambda, DynamoDB)",
+  "workspaces": [
+    "packages/*",
+    "services/*",
+    "mcp-server",
+    "web-portal"
+  ],
+  "scripts": {
+    "build": "npm run build -w @supply-chain/contracts && npm run build -w @supply-chain/service-catalog && npm run build -w @supply-chain/service-inventory && npm run build -w @supply-chain/service-orders && npm run build -w @nitrostack-demo/supply-chain-mcp",
+    "seed": "npx tsx scripts/seed-dynamodb.ts",
+    "provision:aws": "bash scripts/provision-terraform-stack.sh",
+    "tf:write-generated-env": "node scripts/write-terraform-generated-env.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "devDependencies": {
+    "@aws-sdk/client-dynamodb": "^3.699.0",
+    "@aws-sdk/client-secrets-manager": "^3.699.0",
+    "@aws-sdk/lib-dynamodb": "^3.699.0",
+    "dotenv": "^16.4.5",
+    "tsx": "^4.19.2",
+    "typescript": "^5.6.3"
+  }
+}

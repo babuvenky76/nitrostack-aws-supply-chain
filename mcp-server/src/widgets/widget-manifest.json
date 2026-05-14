@@ -1,0 +1,9 @@
+{
+  "widgets": [
+    {
+      "route": "supply-chain-studio",
+      "name": "Supply chain studio",
+      "description": "Catalog + orders against AWS API Gateway (MCP or direct bearer)"
+    }
+  ]
+}

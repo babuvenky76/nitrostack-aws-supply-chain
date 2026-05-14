@@ -1,0 +1,26 @@
+{
+  "name": "@nitrostack-demo/supply-chain-mcp",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "NitroStack MCP for AWS supply-chain demo (tools, resources, prompts, widgets)",
+  "scripts": {
+    "dev": "nitrostack-cli dev",
+    "build": "nitrostack-cli build && npm run copy-widgets",
+    "widgets:build": "cd src/widgets && npm install && NODE_ENV=production npm run build",
+    "copy-widgets": "mkdir -p dist/widgets/out && cp -r src/widgets/out/* dist/widgets/out/ 2>/dev/null || true",
+    "start": "npm run build && nitrostack-cli start"
+  },
+  "dependencies": {
+    "@aws-sdk/client-secrets-manager": "^3.699.0",
+    "@aws-sdk/client-sts": "^3.699.0",
+    "@nitrostack/core": "^1.0.3",
+    "dotenv": "^16.4.5",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@nitrostack/cli": "^1.0.3",
+    "@types/node": "^22.10.0",
+    "typescript": "^5.6.3"
+  }
+}
