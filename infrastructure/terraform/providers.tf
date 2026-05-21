@@ -13,6 +13,7 @@ provider "aws" {
       Project     = var.project_name
       ManagedBy   = "terraform"
       Environment = var.environment
+      User        = local.owner_tag_user
     }
   }
 }
