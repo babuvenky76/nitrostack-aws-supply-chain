@@ -16,8 +16,13 @@ data "aws_iam_policy_document" "lambda_assume" {
 }
 
 resource "aws_iam_role" "catalog" {
-  name               = "${var.project_name}-catalog-lambda"
-  assume_role_policy = data.aws_iam_policy_document.lambda_assume.json
+  name                 = "${var.project_name}-catalog-lambda"
+  assume_role_policy   = data.aws_iam_policy_document.lambda_assume.json
+  permissions_boundary = local.iam_permissions_boundary_arn
+
+  tags = {
+    User = local.owner_tag_user
+  }
 }
 
 resource "aws_iam_role_policy_attachment" "catalog_basic" {
@@ -48,8 +53,13 @@ resource "aws_iam_role_policy" "catalog_ddb" {
 }
 
 resource "aws_iam_role" "inventory" {
-  name               = "${var.project_name}-inventory-lambda"
-  assume_role_policy = data.aws_iam_policy_document.lambda_assume.json
+  name                 = "${var.project_name}-inventory-lambda"
+  assume_role_policy   = data.aws_iam_policy_document.lambda_assume.json
+  permissions_boundary = local.iam_permissions_boundary_arn
+
+  tags = {
+    User = local.owner_tag_user
+  }
 }
 
 resource "aws_iam_role_policy_attachment" "inventory_basic" {
@@ -83,8 +93,13 @@ resource "aws_iam_role_policy" "inventory_ddb" {
 }
 
 resource "aws_iam_role" "orders" {
-  name               = "${var.project_name}-orders-lambda"
-  assume_role_policy = data.aws_iam_policy_document.lambda_assume.json
+  name                 = "${var.project_name}-orders-lambda"
+  assume_role_policy   = data.aws_iam_policy_document.lambda_assume.json
+  permissions_boundary = local.iam_permissions_boundary_arn
+
+  tags = {
+    User = local.owner_tag_user
+  }
 }
 
 resource "aws_iam_role_policy_attachment" "orders_basic" {

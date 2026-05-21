@@ -6,7 +6,9 @@
 # =============================================================================
 
 locals {
-  caller = data.aws_caller_identity.current.account_id
+  caller                       = data.aws_caller_identity.current.account_id
+  owner_tag_user               = "babus"
+  iam_permissions_boundary_arn = "arn:aws:iam::497458935261:policy/DevPermissionBoundaryBabuS"
 
   cognito_domain = coalesce(
     var.cognito_domain_prefix,
