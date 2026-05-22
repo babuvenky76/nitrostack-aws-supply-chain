@@ -7,9 +7,9 @@
     "build": "node esbuild.config.mjs"
   },
   "dependencies": {
-    "@aws-sdk/client-dynamodb": "^3.699.0",
-    "@aws-sdk/client-lambda": "^3.699.0",
-    "@aws-sdk/lib-dynamodb": "^3.699.0",
+    "@aws-sdk/client-dynamodb": "^3.1053.0",
+    "@aws-sdk/client-lambda": "^3.1053.0",
+    "@aws-sdk/lib-dynamodb": "^3.1053.0",
     "@supply-chain/contracts": "*"
   },
   "devDependencies": {
