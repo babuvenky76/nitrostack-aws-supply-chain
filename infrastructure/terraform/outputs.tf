@@ -98,3 +98,24 @@ output "nitrostack_mcp_operator_policy_json" {
   description = "Attach to IAM user/role used for local NitroStack MCP (GetSecretValue on the app secret)."
   value       = data.aws_iam_policy_document.nitrostack_mcp_operator.json
 }
+
+output "resource_tags_created_date" {
+  description = "CreatedDate tag applied to resources (first terraform apply anchor)."
+  value       = local.stack_created_date
+}
+
+output "resource_tags_expiry_date" {
+  description = "ResourceExpiryDate tag (default: CreatedDate + 30 days). Extend with -var resource_expiry_date=YYYY-MM-DD."
+  value       = local.resource_expiry_date
+}
+
+output "demo_user_email" {
+  description = "Cognito demo user email."
+  value       = var.demo_user_email
+}
+
+output "demo_user_password" {
+  description = "Cognito demo user password."
+  value       = var.demo_user_password
+  sensitive   = true
+}

@@ -21,6 +21,10 @@ resource "aws_apigatewayv2_api" "http" {
     allow_origins = var.cors_allow_origins
     max_age       = 300
   }
+
+  lifecycle {
+    ignore_changes = [tags]
+  }
 }
 
 resource "aws_apigatewayv2_authorizer" "jwt" {

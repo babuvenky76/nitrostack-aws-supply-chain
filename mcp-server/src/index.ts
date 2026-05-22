@@ -21,17 +21,38 @@ import { appendRuntimeLog } from './common/runtime-file-logger.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
-/**
- * `mcp-server/dist` or `mcp-server/src` → monorepo `supply-chain/` (two levels up).
- * Env load order: `.generated/.env` then `.env` (override) so AWS keys always win.
- */
-const supplyChainRoot = join(__dirname, '..', '..');
+
+// Robustly search for the supply chain root directory (which contains '.generated' and '.env')
+const candidateRoots = [
+  join(__dirname, '..', '..'),
+  join(__dirname, '..'),
+  '/Users/babusrinivasan/Projects/NitroStack/module-repos/aws/supply-chain',
+  process.cwd(),
+  join(process.cwd(), '..')
+];
+
+let supplyChainRoot = '';
+for (const cand of candidateRoots) {
+  if (existsSync(join(cand, '.env')) || existsSync(join(cand, '.generated', '.env'))) {
+    supplyChainRoot = cand;
+    break;
+  }
+}
+if (!supplyChainRoot) {
+  supplyChainRoot = '/Users/babusrinivasan/Projects/NitroStack/module-repos/aws/supply-chain';
+}
+
 const generatedEnvPath = join(supplyChainRoot, '.generated', '.env');
 const envPath = join(supplyChainRoot, '.env');
+
+process.stderr.write(`[SupplyChain-MCP] Loading env from: ${envPath} and ${generatedEnvPath}\n`);
+
 if (existsSync(generatedEnvPath)) {
   config({ path: generatedEnvPath });
 }
 config({ path: envPath, override: true });
+
+process.stderr.write(`[SupplyChain-MCP] Loaded VITE_COGNITO_WEB_CLIENT_ID: ${process.env.VITE_COGNITO_WEB_CLIENT_ID || 'MISSING'}\n`);
 
 const BOOTSTRAP_ERROR_LOG = join(supplyChainRoot, '.mcp-bootstrap-error.log');
 

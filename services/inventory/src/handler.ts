@@ -8,8 +8,10 @@
 import { DynamoDBClient } from '@aws-sdk/client-dynamodb';
 import { DynamoDBDocumentClient, UpdateCommand } from '@aws-sdk/lib-dynamodb';
 import { logLambdaError, releaseRequestSchema, reserveRequestSchema } from '@supply-chain/contracts';
+import { REQUEST_LIMITS } from '../../common/request-limits.js';
 
 const ddb = DynamoDBDocumentClient.from(new DynamoDBClient({}));
+const MAX_INVOKE_PAYLOAD = REQUEST_LIMITS.MAX_BODY_SIZE;
 
 export type InventoryInvokePayload =
   | ({ action: 'reserve' } & { correlationId: string } & Record<string, unknown>)
@@ -17,6 +19,9 @@ export type InventoryInvokePayload =
 
 export const handler = async (event: InventoryInvokePayload) => {
   const correlationId = typeof event.correlationId === 'string' ? event.correlationId : 'unknown';
+  if (Buffer.byteLength(JSON.stringify(event), 'utf8') > MAX_INVOKE_PAYLOAD) {
+    return { ok: false as const, error: { code: 'PAYLOAD_TOO_LARGE', message: 'Invoke payload exceeds limit' } };
+  }
   const tableName = process.env.INVENTORY_TABLE_NAME;
   if (!tableName) {
     logLambdaError(correlationId, 'inventory.config', new Error('INVENTORY_TABLE_NAME is not set'));

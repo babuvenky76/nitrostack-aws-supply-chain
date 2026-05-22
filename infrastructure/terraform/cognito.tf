@@ -65,6 +65,7 @@ resource "aws_cognito_user_pool_client" "web" {
   explicit_auth_flows = [
     "ALLOW_REFRESH_TOKEN_AUTH",
     "ALLOW_USER_SRP_AUTH",
+    "ALLOW_USER_PASSWORD_AUTH",
   ]
 
   depends_on = [aws_cognito_resource_server.supply_chain]
@@ -88,4 +89,29 @@ resource "aws_cognito_user_pool_client" "mcp" {
 resource "aws_cognito_user_pool_domain" "main" {
   domain       = local.cognito_domain
   user_pool_id = aws_cognito_user_pool.main.id
+}
+
+variable "demo_user_email" {
+  type        = string
+  description = "Default Cognito demo user email."
+  default     = "babu@nitrostack.io"
+}
+
+variable "demo_user_password" {
+  type        = string
+  description = "Default Cognito demo user password."
+  default     = "Password123!"
+}
+
+resource "aws_cognito_user" "demo" {
+  user_pool_id = aws_cognito_user_pool.main.id
+  username     = var.demo_user_email
+
+  attributes = {
+    email          = var.demo_user_email
+    email_verified = "true"
+  }
+
+  password       = var.demo_user_password
+  message_action = "SUPPRESS"
 }

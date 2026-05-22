@@ -1,332 +1,369 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 770" width="1100" height="770" role="img" aria-label="NitroStack AWS Supply Chain architecture">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 820" width="1200" height="820" role="img" aria-label="NitroStack AWS Supply Chain solution architecture">
   <defs>
-    <radialGradient id="bg-grad" cx="42%" cy="38%" r="78%">
-      <stop offset="0%" stop-color="#111827"/>
-      <stop offset="100%" stop-color="#070a13"/>
+    <radialGradient id="bg" cx="50%" cy="35%" r="85%">
+      <stop offset="0%" stop-color="#0c1222"/>
+      <stop offset="100%" stop-color="#050810"/>
     </radialGradient>
-    <linearGradient id="nitro-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#ff4b2b"/>
-      <stop offset="100%" stop-color="#ff416c"/>
-    </linearGradient>
-    <linearGradient id="portal-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#00f2fe"/>
-      <stop offset="100%" stop-color="#4facfe"/>
-    </linearGradient>
-    <linearGradient id="mcp-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#38ef7d"/>
-      <stop offset="100%" stop-color="#11998e"/>
-    </linearGradient>
-    <linearGradient id="apigw-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#b92b27"/>
-      <stop offset="100%" stop-color="#1565c0"/>
-    </linearGradient>
-    <linearGradient id="lambda-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#f857a6"/>
-      <stop offset="100%" stop-color="#ff5858"/>
-    </linearGradient>
-    <linearGradient id="ddb-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#ff9900"/>
-      <stop offset="100%" stop-color="#ff5500"/>
-    </linearGradient>
-    <linearGradient id="security-grad" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#7f00ff"/>
-      <stop offset="100%" stop-color="#e100ff"/>
-    </linearGradient>
-    <filter id="glow-soft">
-      <feGaussianBlur stdDeviation="1.5" result="b"/>
+    <linearGradient id="g-nitro" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#ff6b4a"/><stop offset="100%" stop-color="#ff2d6f"/></linearGradient>
+    <linearGradient id="g-portal" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#22d3ee"/><stop offset="100%" stop-color="#3b82f6"/></linearGradient>
+    <linearGradient id="g-mcp" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#34d399"/><stop offset="100%" stop-color="#059669"/></linearGradient>
+    <linearGradient id="g-api" x1="0" y1="1" x2="1" y2="0"><stop offset="0%" stop-color="#6366f1"/><stop offset="100%" stop-color="#2563eb"/></linearGradient>
+    <linearGradient id="g-lambda" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#f472b6"/><stop offset="100%" stop-color="#e11d48"/></linearGradient>
+    <linearGradient id="g-ddb" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#fbbf24"/><stop offset="100%" stop-color="#ea580c"/></linearGradient>
+    <linearGradient id="g-cloud" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#1e3a5f" stop-opacity="0.5"/><stop offset="100%" stop-color="#0f172a" stop-opacity="0.2"/></linearGradient>
+    <linearGradient id="g-foundation" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#312e81" stop-opacity="0.4"/><stop offset="50%" stop-color="#1e293b" stop-opacity="0.6"/><stop offset="100%" stop-color="#134e4a" stop-opacity="0.4"/></linearGradient>
+    <filter id="card-shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000" flood-opacity="0.45"/>
+    </filter>
+    <filter id="glow-line" x="-10%" y="-10%" width="120%" height="120%">
+      <feGaussianBlur stdDeviation="2" result="b"/>
       <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
     </filter>
-    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#ffffff" stroke-opacity="0.03" stroke-width="1"/>
+    <pattern id="dots" width="24" height="24" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1" fill="#fff" fill-opacity="0.04"/>
     </pattern>
-    <marker id="arrow-fwd" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
-      <path d="M0,0 L7,3.5 L0,7 Z" fill="currentColor"/>
-    </marker>
-    <marker id="arrow-rev" markerWidth="7" markerHeight="7" refX="1" refY="3.5" orient="auto">
-      <path d="M7,0 L0,3.5 L7,7 Z" fill="currentColor"/>
-    </marker>
+    <marker id="arr" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="currentColor"/></marker>
+    <marker id="arr-back" markerWidth="8" markerHeight="8" refX="1" refY="4" orient="auto"><path d="M8,0 L0,4 L8,8 Z" fill="currentColor"/></marker>
 
-    <!-- Side-view truck: cab + trailer + prominent wheels (faces right) -->
-    <symbol id="truck" viewBox="0 0 32 18">
-      <rect x="1" y="3.5" width="17" height="9" rx="1.2" fill="currentColor"/>
-      <path d="M18 4.5 H27 L30.5 8.5 V12 H18 Z" fill="currentColor"/>
-      <rect x="20" y="5.5" width="6" height="4" rx="0.6" fill="#ffffff" fill-opacity="0.35"/>
-      <rect x="1" y="11.5" width="29.5" height="1.2" rx="0.4" fill="currentColor" fill-opacity="0.45"/>
-      <circle cx="8" cy="15.5" r="3.2" fill="#0f172a" stroke="currentColor" stroke-width="1.4"/>
-      <circle cx="8" cy="15.5" r="1.3" fill="#94a3b8"/>
-      <circle cx="25" cy="15.5" r="3.2" fill="#0f172a" stroke="currentColor" stroke-width="1.4"/>
-      <circle cx="25" cy="15.5" r="1.3" fill="#94a3b8"/>
+    <symbol id="icon-studio" viewBox="0 0 32 32">
+      <rect x="4" y="6" width="24" height="18" rx="3" fill="none" stroke="currentColor" stroke-width="2"/>
+      <path d="M8 14h6M8 18h10M18 10l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="icon-browser" viewBox="0 0 32 32">
+      <rect x="3" y="5" width="26" height="20" rx="3" fill="none" stroke="currentColor" stroke-width="2"/>
+      <line x1="3" y1="11" x2="29" y2="11" stroke="currentColor" stroke-width="2"/>
+      <circle cx="8" cy="8" r="1.5" fill="currentColor"/><circle cx="13" cy="8" r="1.5" fill="currentColor"/>
+    </symbol>
+    <symbol id="icon-mcp" viewBox="0 0 32 32">
+      <circle cx="16" cy="16" r="5" fill="currentColor" fill-opacity="0.3" stroke="currentColor" stroke-width="1.5"/>
+      <circle cx="6" cy="10" r="3" fill="currentColor"/><circle cx="26" cy="10" r="3" fill="currentColor"/>
+      <circle cx="6" cy="24" r="3" fill="currentColor"/><circle cx="26" cy="24" r="3" fill="currentColor"/>
+      <path d="M9 11 L13 14 M23 11 L19 14 M9 23 L13 18 M23 23 L19 18" stroke="currentColor" stroke-width="1.2" opacity="0.7"/>
+    </symbol>
+    <symbol id="icon-gateway" viewBox="0 0 32 32">
+      <path d="M6 26 V10 L16 4 L26 10 V26" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+      <path d="M12 26 V16 H20 V26" fill="currentColor" fill-opacity="0.35"/>
+    </symbol>
+    <symbol id="icon-lambda" viewBox="0 0 32 32">
+      <rect x="4" y="4" width="24" height="24" rx="6" fill="currentColor" fill-opacity="0.2"/>
+      <text x="16" y="22" text-anchor="middle" font-family="Georgia, serif" font-size="18" font-weight="700" fill="currentColor">λ</text>
+    </symbol>
+    <symbol id="icon-ddb" viewBox="0 0 40 48">
+      <ellipse cx="20" cy="10" rx="18" ry="6" fill="currentColor" fill-opacity="0.35"/>
+      <path d="M2 10 v26 q0 8 18 8 q18 0 18 -8 V10" fill="none" stroke="currentColor" stroke-width="2"/>
+      <ellipse cx="20" cy="36" rx="18" ry="6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-opacity="0.5"/>
+      <line x1="8" y1="18" x2="32" y2="18" stroke="currentColor" stroke-opacity="0.25"/><line x1="8" y1="26" x2="32" y2="26" stroke="currentColor" stroke-opacity="0.25"/>
+    </symbol>
+    <symbol id="icon-shield" viewBox="0 0 24 24">
+      <path d="M12 2 L20 6 V12 C20 17 16 21 12 22 C8 21 4 17 4 12 V6 Z" fill="none" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M9 12 L11 14 L15 10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="icon-terraform" viewBox="0 0 24 24">
+      <path d="M3 8 L12 3 L21 8 V16 L12 21 L3 16 Z" fill="none" stroke="currentColor" stroke-width="1.5"/>
+      <line x1="12" y1="3" x2="12" y2="21" stroke="currentColor" stroke-width="1" opacity="0.4"/>
+    </symbol>
+    <symbol id="icon-package" viewBox="0 0 24 24">
+      <path d="M3 7 L12 2 L21 7 V17 L12 22 L3 17 Z" fill="none" stroke="currentColor" stroke-width="1.5"/>
+      <line x1="12" y1="12" x2="12" y2="22" stroke="currentColor" stroke-width="1.5"/>
+      <line x1="3" y1="7" x2="12" y2="12" stroke="currentColor" stroke-width="1.5"/>
+      <line x1="21" y1="7" x2="12" y2="12" stroke="currentColor" stroke-width="1.5"/>
+    </symbol>
+    <symbol id="icon-truck" viewBox="0 0 40 22">
+      <rect x="2" y="4" width="22" height="11" rx="2" fill="currentColor"/>
+      <path d="M24 5 H34 L38 10 V15 H24 Z" fill="currentColor"/>
+      <rect x="26" y="7" width="7" height="5" rx="1" fill="#fff" fill-opacity="0.3"/>
+      <circle cx="10" cy="18" r="4" fill="#0f172a" stroke="currentColor" stroke-width="2"/>
+      <circle cx="10" cy="18" r="1.6" fill="#94a3b8"/>
+      <circle cx="32" cy="18" r="4" fill="#0f172a" stroke="currentColor" stroke-width="2"/>
+      <circle cx="32" cy="18" r="1.6" fill="#94a3b8"/>
+    </symbol>
+    <symbol id="icon-packet" viewBox="0 0 12 12">
+      <rect x="1" y="3" width="10" height="6" rx="1" fill="currentColor"/>
     </symbol>
   </defs>
 
   <style><![CDATA[
-    .bg { fill: url(#bg-grad); }
-    .grid-overlay { fill: url(#grid); }
-    .lane { fill: none; stroke: #334155; stroke-width: 2.5; stroke-linecap: round; }
-    .lane-fwd { fill: none; stroke-width: 2; stroke-linecap: round; stroke-dasharray: 5 12; animation: dash-fwd 1s linear infinite; }
-    .lane-rev { fill: none; stroke-width: 2; stroke-linecap: round; stroke-dasharray: 5 12; animation: dash-rev 1s linear infinite; opacity: 0.55; }
-    @keyframes dash-fwd { to { stroke-dashoffset: -34; } }
-    @keyframes dash-rev { to { stroke-dashoffset: 34; } }
-    .lane-internal { stroke-dasharray: 3 7; }
+    .lane-base { fill: none; stroke: #1e293b; stroke-width: 10; stroke-linecap: round; }
+    .lane-glow { fill: none; stroke-width: 3; stroke-linecap: round; filter: url(#glow-line); }
+    .lane-dash-f { stroke-dasharray: 8 14; animation: flow-f 1.1s linear infinite; }
+    .lane-dash-r { stroke-dasharray: 8 14; animation: flow-r 1.1s linear infinite; opacity: 0.5; }
+    @keyframes flow-f { to { stroke-dashoffset: -44; } }
+    @keyframes flow-r { to { stroke-dashoffset: 44; } }
+    .card { filter: url(#card-shadow); }
   ]]></style>
 
-  <rect width="1100" height="770" class="bg"/>
-  <rect width="1100" height="770" class="grid-overlay"/>
+  <rect width="1200" height="820" fill="url(#bg)"/>
+  <rect width="1200" height="820" fill="url(#dots)"/>
 
   <!-- Header -->
-  <rect x="0" y="0" width="848" height="56" fill="#0f172a" fill-opacity="0.96"/>
-  <rect x="20" y="12" width="5" height="28" fill="url(#nitro-grad)" rx="2"/>
-  <text x="34" y="24" font-family="system-ui, sans-serif" font-size="20" font-weight="700" fill="#fff">NitroStack AWS Supply Chain</text>
-  <text x="34" y="42" font-family="system-ui, sans-serif" font-size="11" fill="#9ca3af">Bidirectional flows · animated trucks show request and response paths</text>
+  <rect x="0" y="0" width="1200" height="68" fill="#0a0f1a" fill-opacity="0.92"/>
+  <rect x="28" y="18" width="6" height="32" rx="3" fill="url(#g-nitro)"/>
+  <text x="44" y="36" font-family="system-ui, -apple-system, sans-serif" font-size="26" font-weight="700" fill="#f8fafc" letter-spacing="-0.5">NitroStack AWS Supply Chain</text>
+  <text x="44" y="54" font-family="system-ui, sans-serif" font-size="12" fill="#64748b">End-to-end reference · human (PKCE) and operator (MCP) paths on one API surface</text>
 
-  <!-- Legend (main area) -->
-  <g transform="translate(28, 62)">
-    <rect width="520" height="28" rx="5" fill="#1f2937" stroke="#374151"/>
-    <circle cx="14" cy="14" r="3.5" fill="#22d3ee"/>
-    <text x="22" y="17" font-family="system-ui, sans-serif" font-size="9" fill="#d1d5db">Browser</text>
-    <circle cx="78" cy="14" r="3.5" fill="#34d399"/>
-    <text x="86" y="17" font-family="system-ui, sans-serif" font-size="9" fill="#d1d5db">MCP</text>
-    <circle cx="128" cy="14" r="3.5" fill="#c4b5fd"/>
-    <text x="136" y="17" font-family="system-ui, sans-serif" font-size="9" fill="#d1d5db">API/Lambda</text>
-    <circle cx="198" cy="14" r="3.5" fill="#fb923c"/>
-    <text x="206" y="17" font-family="system-ui, sans-serif" font-size="9" fill="#d1d5db">Data</text>
-    <text x="248" y="17" font-family="system-ui, sans-serif" font-size="9" fill="#6b7280">↔ two-way · trucks ⇄ outbound + return</text>
-    <use href="#truck" x="400" y="8" width="28" height="16" color="#9ca3af"/>
+  <!-- Swimlane backgrounds -->
+  <rect x="20" y="78" width="200" height="520" rx="12" fill="#0f172a" fill-opacity="0.35" stroke="#1e293b" stroke-width="1"/>
+  <text x="120" y="102" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#64748b" letter-spacing="1.2">EXPERIENCE</text>
+
+  <rect x="232" y="78" width="188" height="520" rx="12" fill="#052e22" fill-opacity="0.25" stroke="#134e4a" stroke-width="1"/>
+  <text x="326" y="102" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#6ee7b7" letter-spacing="1.2">INTEGRATION</text>
+
+  <rect x="432" y="78" width="148" height="520" rx="12" fill="#1e1b4b" fill-opacity="0.3" stroke="#3730a3" stroke-width="1"/>
+  <text x="506" y="102" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#a5b4fc" letter-spacing="1.2">API EDGE</text>
+
+  <!-- AWS Cloud boundary -->
+  <rect x="592" y="78" width="588" height="520" rx="16" fill="url(#g-cloud)" stroke="#334155" stroke-width="1.5" stroke-dasharray="8 6"/>
+  <text x="886" y="102" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#94a3b8" letter-spacing="1.5">AWS CLOUD — COMPUTE AND DATA</text>
+
+  <rect x="612" y="118" width="268" height="460" rx="10" fill="#111827" fill-opacity="0.5" stroke="#374151"/>
+  <text x="746" y="140" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" font-weight="700" fill="#9ca3af">LAMBDA (BOUNDED CONTEXTS)</text>
+
+  <rect x="900" y="118" width="258" height="460" rx="10" fill="#1c1917" fill-opacity="0.45" stroke="#78350f" stroke-opacity="0.5"/>
+  <text x="1029" y="140" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" font-weight="700" fill="#fbbf24">DYNAMODB</text>
+
+  <!-- Foundation strip (uses bottom space) -->
+  <rect x="20" y="618" width="1160" height="188" rx="14" fill="url(#g-foundation)" stroke="#334155"/>
+  <text x="40" y="644" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#94a3b8" letter-spacing="1.3">PLATFORM FOUNDATION</text>
+
+  <!-- ========== FLOW ROUTES ========== -->
+  <g id="flows" aria-hidden="true">
+    <!-- Studio → MCP -->
+    <path d="M 212 195 C 222 195, 228 195, 248 210" class="lane-base"/>
+    <path d="M 212 195 C 222 195, 228 195, 248 210" class="lane-glow lane-dash-f" stroke="#ff6b6b" marker-end="url(#arr)"/>
+    <path d="M 248 218 C 238 218, 232 218, 212 203" class="lane-glow lane-dash-r" stroke="#ff6b6b" marker-end="url(#arr-back)"/>
+
+    <!-- Portal → API -->
+    <path d="M 212 355 L 432 355" class="lane-base"/>
+    <path d="M 212 355 L 432 355" class="lane-glow lane-dash-f" stroke="#38bdf8" marker-end="url(#arr)"/>
+    <path d="M 432 368 L 212 368" class="lane-glow lane-dash-r" stroke="#38bdf8" marker-end="url(#arr-back)"/>
+
+    <!-- MCP → API -->
+    <path d="M 412 250 C 430 280, 440 300, 448 320" class="lane-base"/>
+    <path d="M 412 250 C 430 280, 440 300, 448 320" class="lane-glow lane-dash-f" stroke="#34d399" marker-end="url(#arr)"/>
+    <path d="M 448 332 C 440 312, 430 292, 412 262" class="lane-glow lane-dash-r" stroke="#34d399" marker-end="url(#arr-back)"/>
+
+    <!-- API → catalog -->
+    <path d="M 572 280 C 590 260, 600 248, 628 230" class="lane-base"/>
+    <path d="M 572 280 C 590 260, 600 248, 628 230" class="lane-glow lane-dash-f" stroke="#a78bfa" marker-end="url(#arr)"/>
+    <path d="M 628 242 C 600 260, 590 272, 572 292" class="lane-glow lane-dash-r" stroke="#a78bfa" marker-end="url(#arr-back)"/>
+
+    <!-- API → orders -->
+    <path d="M 572 340 C 590 350, 600 358, 628 370" class="lane-base"/>
+    <path d="M 572 340 C 590 350, 600 358, 628 370" class="lane-glow lane-dash-f" stroke="#c4b5fd" marker-end="url(#arr)"/>
+    <path d="M 628 382 C 600 370, 590 362, 572 352" class="lane-glow lane-dash-r" stroke="#c4b5fd" marker-end="url(#arr-back)"/>
+
+    <!-- orders → inventory (invoke) -->
+    <path d="M 746 420 L 746 455 L 680 455" class="lane-base"/>
+    <path d="M 746 420 L 746 455 L 680 455" class="lane-glow lane-dash-f" stroke="#fb7185" stroke-dasharray="4 8" marker-end="url(#arr)"/>
+    <path d="M 680 467 L 746 467 L 746 432" class="lane-glow lane-dash-r" stroke="#fb7185" stroke-dasharray="4 8" marker-end="url(#arr-back)"/>
+
+    <!-- Lambdas → DDB -->
+    <path d="M 868 230 L 918 230" class="lane-base"/>
+    <path d="M 868 230 L 918 230" class="lane-glow lane-dash-f" stroke="#fb923c" marker-end="url(#arr)"/>
+    <path d="M 918 242 L 868 242" class="lane-glow lane-dash-r" stroke="#fb923c" marker-end="url(#arr-back)"/>
+
+    <path d="M 868 370 L 918 370" class="lane-base"/>
+    <path d="M 868 370 L 918 370" class="lane-glow lane-dash-f" stroke="#f97316" marker-end="url(#arr)"/>
+    <path d="M 918 382 L 868 382" class="lane-glow lane-dash-r" stroke="#f97316" marker-end="url(#arr-back)"/>
+
+    <path d="M 868 500 L 918 500" class="lane-base"/>
+    <path d="M 868 500 L 918 500" class="lane-glow lane-dash-f" stroke="#4ade80" marker-end="url(#arr)"/>
+    <path d="M 918 512 L 868 512" class="lane-glow lane-dash-r" stroke="#4ade80" marker-end="url(#arr-back)"/>
   </g>
 
-  <!-- ========== ROUTES (dual lanes: forward + return) ========== -->
-  <g id="routes" aria-hidden="true">
-    <!-- Studio ↔ MCP (y=168) -->
-    <path d="M 224 164 L 248 164" class="lane"/>
-    <path d="M 224 164 L 248 164" class="lane-fwd" stroke="#ff6b6b" marker-end="url(#arrow-fwd)"/>
-    <path d="M 248 172 L 224 172" class="lane-rev" stroke="#ff6b6b" marker-end="url(#arrow-rev)"/>
-
-    <!-- Web Portal ↔ API (y=258) -->
-    <path d="M 224 254 L 452 254" class="lane"/>
-    <path d="M 224 254 L 452 254" class="lane-fwd" stroke="#22d3ee" marker-end="url(#arrow-fwd)"/>
-    <path d="M 452 262 L 224 262" class="lane-rev" stroke="#22d3ee" marker-end="url(#arrow-rev)"/>
-
-    <!-- MCP ↔ API (diagonal) -->
-    <path d="M 430 208 L 452 248" class="lane"/>
-    <path d="M 430 208 L 452 248" class="lane-fwd" stroke="#34d399" marker-end="url(#arrow-fwd)"/>
-    <path d="M 452 256 L 430 216" class="lane-rev" stroke="#34d399" marker-end="url(#arrow-rev)"/>
-
-    <!-- API ↔ catalog (y=178) -->
-    <path d="M 618 174 L 642 174" class="lane"/>
-    <path d="M 618 174 L 642 174" class="lane-fwd" stroke="#c4b5fd" marker-end="url(#arrow-fwd)"/>
-    <path d="M 642 182 L 618 182" class="lane-rev" stroke="#c4b5fd" marker-end="url(#arrow-rev)"/>
-
-    <!-- API ↔ orders (y=268) -->
-    <path d="M 618 264 L 642 264" class="lane"/>
-    <path d="M 618 264 L 642 264" class="lane-fwd" stroke="#a78bfa" marker-end="url(#arrow-fwd)"/>
-    <path d="M 642 272 L 618 272" class="lane-rev" stroke="#a78bfa" marker-end="url(#arrow-rev)"/>
-
-    <!-- orders ↔ inventory (internal orchestration) -->
-    <path d="M 726 302 L 726 338 L 658 338" class="lane lane-internal"/>
-    <path d="M 726 302 L 726 338 L 658 338" class="lane-fwd lane-internal" stroke="#fb7185" marker-end="url(#arrow-fwd)"/>
-    <path d="M 658 346 L 726 346 L 726 310" class="lane-rev lane-internal" stroke="#fb7185" marker-end="url(#arrow-rev)"/>
-
-    <!-- catalog ↔ Products DB (y=176) -->
-    <path d="M 812 172 L 802 172" class="lane"/>
-    <path d="M 812 172 L 802 172" class="lane-fwd" stroke="#fb923c" marker-end="url(#arrow-fwd)"/>
-    <path d="M 802 180 L 812 180" class="lane-rev" stroke="#fb923c" marker-end="url(#arrow-rev)"/>
-
-    <!-- orders ↔ Orders DB (y=266) -->
-    <path d="M 812 262 L 802 262" class="lane"/>
-    <path d="M 812 262 L 802 262" class="lane-fwd" stroke="#f97316" marker-end="url(#arrow-fwd)"/>
-    <path d="M 802 270 L 812 270" class="lane-rev" stroke="#f97316" marker-end="url(#arrow-rev)"/>
-
-    <!-- inventory ↔ Inventory DB (y=356) -->
-    <path d="M 812 352 L 802 352" class="lane"/>
-    <path d="M 812 352 L 802 352" class="lane-fwd" stroke="#4ade80" marker-end="url(#arrow-fwd)"/>
-    <path d="M 802 360 L 812 360" class="lane-rev" stroke="#4ade80" marker-end="url(#arrow-rev)"/>
+  <!-- Flow labels -->
+  <g font-family="system-ui, sans-serif" font-size="9" font-weight="600">
+    <rect x="218" y="178" width="52" height="16" rx="8" fill="#1f2937" stroke="#ff6b6b" stroke-opacity="0.5"/>
+    <text x="244" y="189" text-anchor="middle" fill="#fca5a5">MCP / Studio</text>
+    <rect x="300" y="342" width="72" height="16" rx="8" fill="#1f2937" stroke="#38bdf8" stroke-opacity="0.5"/>
+    <text x="336" y="353" text-anchor="middle" fill="#7dd3fc">PKCE + Bearer</text>
+    <rect x="355" y="268" width="48" height="16" rx="8" fill="#1f2937" stroke="#34d399" stroke-opacity="0.5"/>
+    <text x="379" y="279" text-anchor="middle" fill="#6ee7b7">M2M</text>
+    <rect x="548" y="258" width="36" height="16" rx="8" fill="#1f2937" stroke="#a78bfa" stroke-opacity="0.5"/>
+    <text x="566" y="269" text-anchor="middle" fill="#c4b5fd">JWT</text>
+    <rect x="698" y="438" width="44" height="16" rx="8" fill="#1f2937" stroke="#fb7185" stroke-opacity="0.5"/>
+    <text x="720" y="449" text-anchor="middle" fill="#fda4af">invoke</text>
   </g>
 
-  <!-- ========== MAIN ARCHITECTURE ========== -->
-  <g id="architecture">
-    <!-- Clients -->
-    <rect x="24" y="98" width="204" height="278" rx="10" fill="#111827" fill-opacity="0.45" stroke="#374151"/>
-    <text x="38" y="120" font-family="system-ui, sans-serif" font-size="10" font-weight="700" fill="#9ca3af">CLIENTS</text>
-    <g transform="translate(38, 132)">
-      <rect width="176" height="68" rx="8" fill="#1f2937" stroke="url(#nitro-grad)" stroke-width="1.5"/>
-      <text x="14" y="26" font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="#fff">NitroStack Studio</text>
-      <text x="14" y="42" font-family="system-ui, sans-serif" font-size="10" fill="#9ca3af">Widgets · MCP tools</text>
-      <rect x="14" y="50" width="44" height="12" rx="3" fill="#ff416c" fill-opacity="0.3"/>
-      <text x="18" y="59" font-family="system-ui, sans-serif" font-size="8" font-weight="600" fill="#ff8a7a">Widget</text>
-    </g>
-    <g transform="translate(38, 212)">
-      <rect width="176" height="68" rx="8" fill="#1f2937" stroke="url(#portal-grad)" stroke-width="1.5"/>
-      <text x="14" y="26" font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="#fff">Web Portal</text>
-      <text x="14" y="42" font-family="system-ui, sans-serif" font-size="10" fill="#9ca3af">Vite · OIDC / PKCE</text>
-      <rect x="14" y="50" width="48" height="12" rx="3" fill="#4facfe" fill-opacity="0.3"/>
-      <text x="18" y="59" font-family="system-ui, sans-serif" font-size="8" font-weight="600" fill="#7dd3fc">User auth</text>
-    </g>
-    <text x="38" y="358" font-family="system-ui, sans-serif" font-size="9" fill="#6b7280">AWS SSO / IAM</text>
+  <!-- ========== EXPERIENCE CARDS ========== -->
+  <g class="card" transform="translate(36, 118)">
+    <rect width="168" height="108" rx="12" fill="#151c2c" stroke="url(#g-nitro)" stroke-width="2"/>
+    <use href="#icon-studio" x="14" y="14" width="36" height="36" color="#ff6b6b"/>
+    <text x="58" y="38" font-family="system-ui, sans-serif" font-size="15" font-weight="700" fill="#fff">NitroStack Studio</text>
+    <text x="58" y="56" font-family="system-ui, sans-serif" font-size="10" fill="#94a3b8">Widgets · @Tool · MCP</text>
+    <rect x="58" y="68" width="56" height="18" rx="4" fill="#ff416c" fill-opacity="0.25"/>
+    <text x="66" y="81" font-family="system-ui, sans-serif" font-size="9" font-weight="600" fill="#ff8a7a">Operator UI</text>
+  </g>
 
-    <!-- MCP -->
-    <g transform="translate(248, 112)">
-      <rect width="186" height="176" rx="8" fill="#111827" stroke="url(#mcp-grad)" stroke-width="1.5"/>
-      <rect width="186" height="28" rx="8" fill="#1f2937"/>
-      <text x="12" y="18" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#6ee7b7">MCP Server</text>
-      <rect x="118" y="6" width="58" height="14" rx="3" fill="#11998e" fill-opacity="0.35"/>
-      <text x="124" y="16" font-family="system-ui, sans-serif" font-size="8" font-weight="600" fill="#a7f3d0">M2M 120/min</text>
-      <text x="12" y="48" font-family="system-ui, sans-serif" font-size="9" fill="#d1d5db">catalog_* · order_* tools</text>
-      <text x="12" y="62" font-family="system-ui, sans-serif" font-size="9" fill="#d1d5db">Widget · Resource · Prompt</text>
-      <text x="12" y="82" font-family="system-ui, sans-serif" font-size="9" fill="#6b7280">Secrets Manager via IAM</text>
-    </g>
+  <g class="card" transform="translate(36, 278)">
+    <rect width="168" height="108" rx="12" fill="#151c2c" stroke="url(#g-portal)" stroke-width="2"/>
+    <use href="#icon-browser" x="14" y="14" width="36" height="36" color="#38bdf8"/>
+    <text x="58" y="38" font-family="system-ui, sans-serif" font-size="15" font-weight="700" fill="#fff">Web Portal</text>
+    <text x="58" y="56" font-family="system-ui, sans-serif" font-size="10" fill="#94a3b8">Vite · React · Cognito</text>
+    <rect x="58" y="68" width="64" height="18" rx="4" fill="#3b82f6" fill-opacity="0.25"/>
+    <text x="66" y="81" font-family="system-ui, sans-serif" font-size="9" font-weight="600" fill="#7dd3fc">Human auth</text>
+  </g>
 
-    <!-- API Gateway -->
-    <g transform="translate(452, 112)">
-      <rect width="168" height="176" rx="8" fill="#1f2937" stroke="url(#apigw-grad)" stroke-width="1.5"/>
-      <rect width="168" height="28" rx="8" fill="#111827"/>
-      <text x="12" y="18" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#93c5fd">API Gateway</text>
-      <text x="12" y="46" font-family="system-ui, sans-serif" font-size="9" fill="#d1d5db">Cognito JWT</text>
-      <text x="12" y="62" font-family="ui-monospace, monospace" font-size="8" fill="#86efac">GET  /v1/catalog/products</text>
-      <text x="12" y="74" font-family="ui-monospace, monospace" font-size="8" fill="#86efac">POST /v1/orders</text>
-      <text x="12" y="86" font-family="ui-monospace, monospace" font-size="8" fill="#86efac">POST …/cancel</text>
-      <text x="12" y="108" font-family="system-ui, sans-serif" font-size="8" fill="#6b7280">No route to inventory</text>
-    </g>
+  <text x="120" y="420" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#475569">Local: AWS SSO or IAM role</text>
 
-    <!-- Lambdas -->
-    <rect x="638" y="92" width="178" height="298" rx="10" fill="#111827" fill-opacity="0.4" stroke="#374151"/>
-    <text x="652" y="114" font-family="system-ui, sans-serif" font-size="10" font-weight="700" fill="#9ca3af">LAMBDA SERVICES</text>
-    <g transform="translate(652, 128)">
-      <rect width="150" height="62" rx="8" fill="#1f2937" stroke="url(#lambda-grad)" stroke-width="1.2"/>
-      <text x="12" y="24" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#fff">catalog</text>
-      <text x="12" y="40" font-family="system-ui, sans-serif" font-size="9" fill="#9ca3af">HTTP + getBySku invoke</text>
-      <text x="12" y="52" font-family="system-ui, sans-serif" font-size="8" fill="#4ade80">→ Products table</text>
-    </g>
-    <g transform="translate(652, 202)">
-      <rect width="150" height="62" rx="8" fill="#1f2937" stroke="url(#lambda-grad)" stroke-width="1.4"/>
-      <text x="12" y="24" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#fff">orders</text>
-      <text x="12" y="40" font-family="system-ui, sans-serif" font-size="9" fill="#9ca3af">Orchestrates peers</text>
-      <text x="12" y="52" font-family="system-ui, sans-serif" font-size="8" fill="#fca5a5">reserve / release</text>
-    </g>
-    <g transform="translate(652, 276)">
-      <rect width="150" height="62" rx="8" fill="#1f2937" stroke="#6b7280" stroke-width="1.2" stroke-dasharray="4 3"/>
-      <rect x="118" y="8" width="24" height="12" rx="3" fill="#374151"/>
-      <text x="122" y="17" font-family="system-ui, sans-serif" font-size="7" font-weight="700" fill="#9ca3af">PRIVATE</text>
-      <text x="12" y="28" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#e5e7eb">inventory</text>
-      <text x="12" y="44" font-family="system-ui, sans-serif" font-size="9" fill="#9ca3af">Invoke-only stock ops</text>
-      <text x="12" y="56" font-family="system-ui, sans-serif" font-size="8" fill="#6b7280">→ Inventory table</text>
-    </g>
+  <!-- MCP -->
+  <g class="card" transform="translate(248, 168)">
+    <rect width="156" height="240" rx="12" fill="#0c1f17" stroke="url(#g-mcp)" stroke-width="2"/>
+    <use href="#icon-mcp" x="58" y="16" width="40" height="40" color="#34d399"/>
+    <text x="78" y="72" text-anchor="middle" font-family="system-ui, sans-serif" font-size="16" font-weight="700" fill="#ecfdf5">Supply Chain MCP</text>
+    <rect x="28" y="82" width="100" height="20" rx="5" fill="#059669" fill-opacity="0.35"/>
+    <text x="78" y="96" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" font-weight="600" fill="#a7f3d0">Client credentials · 120/min</text>
+    <text x="20" y="122" font-family="ui-monospace, monospace" font-size="9" fill="#86efac">catalog_list_products</text>
+    <text x="20" y="136" font-family="ui-monospace, monospace" font-size="9" fill="#86efac">order_create · cancel</text>
+    <text x="20" y="158" font-family="system-ui, sans-serif" font-size="9" fill="#9ca3af">@Widget · @Resource · Health</text>
+    <text x="20" y="178" font-family="system-ui, sans-serif" font-size="9" fill="#6b7280">Config via Secrets Manager + IAM</text>
+    <line x1="20" y1="192" x2="136" y2="192" stroke="#134e4a"/>
+    <text x="20" y="210" font-family="system-ui, sans-serif" font-size="8" fill="#4ade80">Same routes as web portal</text>
+  </g>
 
-    <!-- Data layer -->
-    <text x="832" y="108" font-family="system-ui, sans-serif" font-size="10" font-weight="700" fill="#9ca3af" text-anchor="middle">DATA LAYER</text>
-    <g transform="translate(796, 118)">
-      <g>
-        <ellipse cx="36" cy="12" rx="34" ry="9" fill="#ff9900" fill-opacity="0.35" stroke="url(#ddb-grad)"/>
-        <path d="M 2 12 L 2 48 Q 2 56 36 56 Q 70 56 70 48 L 70 12" fill="#1f2937" stroke="url(#ddb-grad)" stroke-width="1.4"/>
-        <text x="36" y="34" font-family="system-ui, sans-serif" font-size="10" font-weight="700" fill="#fff" text-anchor="middle">Products</text>
-        <text x="36" y="46" font-family="system-ui, sans-serif" font-size="8" fill="#9ca3af" text-anchor="middle">DynamoDB</text>
-      </g>
-      <g transform="translate(0, 88)">
-        <ellipse cx="36" cy="12" rx="34" ry="9" fill="#ff9900" fill-opacity="0.35" stroke="url(#ddb-grad)"/>
-        <path d="M 2 12 L 2 48 Q 2 56 36 56 Q 70 56 70 48 L 70 12" fill="#1f2937" stroke="url(#ddb-grad)" stroke-width="1.4"/>
-        <text x="36" y="34" font-family="system-ui, sans-serif" font-size="10" font-weight="700" fill="#fff" text-anchor="middle">Orders</text>
-        <text x="36" y="46" font-family="system-ui, sans-serif" font-size="8" fill="#9ca3af" text-anchor="middle">+ GSI</text>
-      </g>
-      <g transform="translate(0, 176)">
-        <ellipse cx="36" cy="12" rx="34" ry="9" fill="#ff9900" fill-opacity="0.35" stroke="url(#ddb-grad)"/>
-        <path d="M 2 12 L 2 48 Q 2 56 36 56 Q 70 56 70 48 L 70 12" fill="#1f2937" stroke="url(#ddb-grad)" stroke-width="1.4"/>
-        <text x="36" y="34" font-family="system-ui, sans-serif" font-size="10" font-weight="700" fill="#fff" text-anchor="middle">Inventory</text>
-        <text x="36" y="46" font-family="system-ui, sans-serif" font-size="8" fill="#9ca3af" text-anchor="middle">DynamoDB</text>
-      </g>
+  <!-- API Gateway -->
+  <g class="card" transform="translate(448, 168)">
+    <rect width="112" height="240" rx="12" fill="#12102a" stroke="url(#g-api)" stroke-width="2"/>
+    <use href="#icon-gateway" x="36" y="12" width="40" height="40" color="#818cf8"/>
+    <text x="56" y="68" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="#e0e7ff">HTTP API</text>
+    <text x="56" y="86" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#a5b4fc">Cognito JWT</text>
+    <text x="10" y="108" font-family="ui-monospace, monospace" font-size="7.5" fill="#bbf7d0">GET /catalog…</text>
+    <text x="10" y="120" font-family="ui-monospace, monospace" font-size="7.5" fill="#bbf7d0">POST /orders</text>
+    <text x="10" y="132" font-family="ui-monospace, monospace" font-size="7.5" fill="#bbf7d0">POST …/cancel</text>
+    <rect x="10" y="148" width="92" height="28" rx="4" fill="#1e1b4b"/>
+    <text x="56" y="162" text-anchor="middle" font-family="system-ui, sans-serif" font-size="8" fill="#f87171" font-weight="600">No HTTP to inventory</text>
+    <text x="56" y="174" text-anchor="middle" font-family="system-ui, sans-serif" font-size="7" fill="#9ca3af">reserve via orders only</text>
+  </g>
+
+  <!-- Lambdas -->
+  <g class="card" transform="translate(628, 158)">
+    <rect width="228" height="88" rx="10" fill="#1f2937" stroke="url(#g-lambda)" stroke-width="1.8"/>
+    <use href="#icon-lambda" x="12" y="22" width="44" height="44" color="#f472b6"/>
+    <text x="64" y="42" font-family="system-ui, sans-serif" font-size="15" font-weight="700" fill="#fff">catalog</text>
+    <text x="64" y="58" font-family="system-ui, sans-serif" font-size="10" fill="#9ca3af">Public HTTP + internal getBySku</text>
+    <text x="64" y="74" font-family="system-ui, sans-serif" font-size="9" fill="#4ade80">Read → Products table</text>
+  </g>
+
+  <g class="card" transform="translate(628, 298)">
+    <rect width="228" height="88" rx="10" fill="#1f2937" stroke="url(#g-lambda)" stroke-width="2"/>
+    <use href="#icon-lambda" x="12" y="22" width="44" height="44" color="#fb7185"/>
+    <text x="64" y="42" font-family="system-ui, sans-serif" font-size="15" font-weight="700" fill="#fff">orders</text>
+    <text x="64" y="58" font-family="system-ui, sans-serif" font-size="10" fill="#9ca3af">Orchestrates catalog + inventory</text>
+    <text x="64" y="74" font-family="system-ui, sans-serif" font-size="9" fill="#fca5a5">Sync invoke reserve / release</text>
+  </g>
+
+  <g class="card" transform="translate(628, 428)">
+    <rect width="228" height="88" rx="10" fill="#1f2937" stroke="#64748b" stroke-width="1.5" stroke-dasharray="6 4"/>
+    <use href="#icon-lambda" x="12" y="22" width="44" height="44" color="#94a3b8"/>
+    <rect x="178" y="12" width="42" height="18" rx="4" fill="#334155"/>
+    <text x="199" y="24" text-anchor="middle" font-family="system-ui, sans-serif" font-size="8" font-weight="700" fill="#e2e8f0">PRIVATE</text>
+    <text x="64" y="46" font-family="system-ui, sans-serif" font-size="15" font-weight="700" fill="#f1f5f9">inventory</text>
+    <text x="64" y="62" font-family="system-ui, sans-serif" font-size="10" fill="#9ca3af">Invoke-only · no API route</text>
+    <text x="64" y="78" font-family="system-ui, sans-serif" font-size="9" fill="#6b7280">Write → Inventory table</text>
+  </g>
+
+  <!-- DynamoDB -->
+  <g transform="translate(928, 158)">
+    <g class="card"><use href="#icon-ddb" x="0" y="0" width="48" height="58" color="#fbbf24"/>
+      <text x="56" y="28" font-family="system-ui, sans-serif" font-size="14" font-weight="700" fill="#fff">Products</text>
+      <text x="56" y="44" font-family="system-ui, sans-serif" font-size="10" fill="#fcd34d">Single-table SKU rows</text>
+    </g>
+  </g>
+  <g transform="translate(928, 298)">
+    <g class="card"><use href="#icon-ddb" x="0" y="0" width="48" height="58" color="#f97316"/>
+      <text x="56" y="28" font-family="system-ui, sans-serif" font-size="14" font-weight="700" fill="#fff">Orders</text>
+      <text x="56" y="44" font-family="system-ui, sans-serif" font-size="10" fill="#fdba74">GSI for list by status</text>
+    </g>
+  </g>
+  <g transform="translate(928, 428)">
+    <g class="card"><use href="#icon-ddb" x="0" y="0" width="48" height="58" color="#4ade80"/>
+      <text x="56" y="28" font-family="system-ui, sans-serif" font-size="14" font-weight="700" fill="#fff">Inventory</text>
+      <text x="56" y="44" font-family="system-ui, sans-serif" font-size="10" fill="#86efac">Stock levels per SKU</text>
     </g>
   </g>
 
-  <!-- ========== RIGHT SIDEBAR (single column) ========== -->
-  <rect x="898" y="88" width="192" height="400" rx="10" fill="#0f172a" fill-opacity="0.5" stroke="#374151"/>
-  <text x="914" y="108" font-family="system-ui, sans-serif" font-size="10" font-weight="700" fill="#6b7280">PLATFORM NOTES</text>
-
-  <g transform="translate(908, 118)">
-    <rect width="202" height="64" rx="6" fill="#1e1b2e" stroke="url(#security-grad)" stroke-width="1.1"/>
-    <text x="10" y="16" font-family="system-ui, sans-serif" font-size="10" font-weight="700" fill="#e9d5ff">Security</text>
-    <text x="10" y="30" font-family="system-ui, sans-serif" font-size="8.5" fill="#9ca3af">Cognito PKCE + M2M scopes</text>
-    <text x="10" y="42" font-family="system-ui, sans-serif" font-size="8.5" fill="#9ca3af">Secrets Manager (URLs, OAuth)</text>
-    <text x="10" y="54" font-family="system-ui, sans-serif" font-size="8.5" fill="#9ca3af">table names — encrypted</text>
+  <!-- Path summary (uses vertical space in cloud) -->
+  <g transform="translate(628, 540)">
+    <rect width="528" height="48" rx="8" fill="#0f172a" fill-opacity="0.8" stroke="#334155"/>
+    <text x="16" y="20" font-family="system-ui, sans-serif" font-size="10" font-weight="600" fill="#94a3b8">Happy path:</text>
+    <text x="16" y="36" font-family="system-ui, sans-serif" font-size="9" fill="#cbd5e1">Create order → catalog lookup → inventory reserve → persist order → return JSON</text>
+    <text x="400" y="36" font-family="system-ui, sans-serif" font-size="9" fill="#6b7280">Cancel releases stock via inventory invoke</text>
   </g>
 
-  <g transform="translate(908, 192)">
-    <rect width="202" height="36" rx="6" fill="#1f2937" stroke="#6366f1" stroke-width="1.1"/>
-    <text x="10" y="15" font-family="system-ui, sans-serif" font-size="10" font-weight="700" fill="#c7d2fe">Terraform (IaC)</text>
-    <text x="10" y="28" font-family="system-ui, sans-serif" font-size="8.5" fill="#9ca3af">API · Cognito · Lambda · DDB</text>
+  <!-- Foundation cards -->
+  <g class="card" transform="translate(36, 662)">
+    <rect width="268" height="120" rx="10" fill="#1a1625" stroke="#a855f7" stroke-width="1.2"/>
+    <use href="#icon-shield" x="16" y="16" width="32" height="32" color="#c084fc"/>
+    <text x="56" y="36" font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="#f3e8ff">Security</text>
+    <text x="56" y="54" font-family="system-ui, sans-serif" font-size="9" fill="#a78bfa">Cognito: PKCE (web) + client credentials (MCP)</text>
+    <text x="56" y="68" font-family="system-ui, sans-serif" font-size="9" fill="#9ca3af">Resource-server scopes · JWT authorizer</text>
+    <text x="56" y="82" font-family="system-ui, sans-serif" font-size="9" fill="#9ca3af">Secrets Manager: URLs, OAuth, table names</text>
+    <text x="56" y="96" font-family="system-ui, sans-serif" font-size="9" fill="#6b7280">No secrets in portal bundle</text>
   </g>
 
-  <g transform="translate(908, 236)">
-    <rect width="202" height="36" rx="6" fill="#1f2937" stroke="#475569"/>
-    <text x="10" y="15" font-family="system-ui, sans-serif" font-size="10" font-weight="700" fill="#9ca3af">Shared packages</text>
-    <text x="10" y="28" font-family="system-ui, sans-serif" font-size="8.5" fill="#d1d5db">contracts · services/common</text>
+  <g class="card" transform="translate(320, 662)">
+    <rect width="268" height="120" rx="10" fill="#151c2c" stroke="#6366f1" stroke-width="1.2"/>
+    <use href="#icon-terraform" x="16" y="16" width="32" height="32" color="#818cf8"/>
+    <text x="56" y="36" font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="#e0e7ff">Terraform (IaC)</text>
+    <text x="56" y="54" font-family="system-ui, sans-serif" font-size="9" fill="#a5b4fc">HTTP API · Cognito · Lambda · DynamoDB</text>
+    <text x="56" y="68" font-family="system-ui, sans-serif" font-size="9" fill="#9ca3af">IAM per function · unified app secret version</text>
+    <text x="56" y="82" font-family="system-ui, sans-serif" font-size="9" fill="#9ca3af">npm run provision:aws · destroy:aws</text>
   </g>
 
-  <g transform="translate(908, 280)">
-    <rect width="202" height="78" rx="6" fill="#1f2937" fill-opacity="0.7" stroke="#475569"/>
-    <text x="10" y="15" font-family="system-ui, sans-serif" font-size="10" font-weight="700" fill="#fff">Design invariants</text>
-    <text x="10" y="28" font-family="system-ui, sans-serif" font-size="8.5" fill="#ff8a7a" font-weight="600">Bounded contexts</text>
-    <text x="10" y="40" font-family="system-ui, sans-serif" font-size="8" fill="#9ca3af">Inventory invoke-only</text>
-    <text x="10" y="52" font-family="system-ui, sans-serif" font-size="8.5" fill="#67e8f9" font-weight="600">Credential hygiene</text>
-    <text x="10" y="64" font-family="system-ui, sans-serif" font-size="8" fill="#9ca3af">No secrets in portal</text>
-    <text x="10" y="76" font-family="system-ui, sans-serif" font-size="8.5" fill="#86efac" font-weight="600">Observability</text>
+  <g class="card" transform="translate(604, 662)">
+    <rect width="268" height="120" rx="10" fill="#151c2c" stroke="#475569" stroke-width="1.2"/>
+    <use href="#icon-package" x="16" y="16" width="32" height="32" color="#94a3b8"/>
+    <text x="56" y="36" font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="#f1f5f9">Shared packages</text>
+    <text x="56" y="54" font-family="system-ui, sans-serif" font-size="9" fill="#cbd5e1">packages/contracts (Zod)</text>
+    <text x="56" y="68" font-family="system-ui, sans-serif" font-size="9" fill="#9ca3af">services/common — HTTP, correlation, limits</text>
+    <text x="56" y="82" font-family="system-ui, sans-serif" font-size="9" fill="#9ca3af">npm workspaces monorepo</text>
   </g>
 
-  <!-- ========== TRUCKS: outbound + return per route ========== -->
+  <g class="card" transform="translate(888, 662)">
+    <rect width="268" height="120" rx="10" fill="#0c1a14" stroke="#22c55e" stroke-width="1.2"/>
+    <text x="16" y="36" font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="#ecfdf5">Design invariants</text>
+    <circle cx="24" cy="52" r="3" fill="#f87171"/><text x="34" y="56" font-family="system-ui, sans-serif" font-size="9" fill="#fecaca">Bounded contexts — inventory never on HTTP</text>
+    <circle cx="24" cy="70" r="3" fill="#38bdf8"/><text x="34" y="74" font-family="system-ui, sans-serif" font-size="9" fill="#bae6fd">Credential hygiene — IAM + GetSecretValue locally</text>
+    <circle cx="24" cy="88" r="3" fill="#4ade80"/><text x="34" y="92" font-family="system-ui, sans-serif" font-size="9" fill="#bbf7d0">Observability — X-Ray + correlation IDs in Lambdas</text>
+  </g>
+
+  <!-- Legend bar -->
+  <g transform="translate(28, 788)">
+    <rect width="1144" height="24" rx="6" fill="#0f172a" stroke="#334155"/>
+    <circle cx="20" cy="12" r="4" fill="#38bdf8"/><text x="30" y="16" font-family="system-ui, sans-serif" font-size="9" fill="#cbd5e1">Human</text>
+    <circle cx="88" cy="12" r="4" fill="#ff6b6b"/><text x="98" y="16" font-family="system-ui, sans-serif" font-size="9" fill="#cbd5e1">Studio</text>
+    <circle cx="156" cy="12" r="4" fill="#34d399"/><text x="166" y="16" font-family="system-ui, sans-serif" font-size="9" fill="#cbd5e1">MCP</text>
+    <circle cx="214" cy="12" r="4" fill="#a78bfa"/><text x="224" y="16" font-family="system-ui, sans-serif" font-size="9" fill="#cbd5e1">API</text>
+    <circle cx="272" cy="12" r="4" fill="#fb923c"/><text x="282" y="16" font-family="system-ui, sans-serif" font-size="9" fill="#cbd5e1">Data</text>
+    <text x="340" y="16" font-family="system-ui, sans-serif" font-size="9" fill="#64748b">⇄ Animated trucks = request + response · Open in browser for full motion (GitHub README shows static SVG)</text>
+    <use href="#icon-truck" x="1080" y="4" width="36" height="20" color="#94a3b8"/>
+  </g>
+
+  <!-- Trucks on major corridors -->
   <g id="trucks" pointer-events="none">
-    <!-- helper: truck 30x17, offset -15,-8.5 -->
-    <!-- Studio ↔ MCP -->
-    <g color="#ff6b6b" opacity="0.95"><g transform="translate(-15,-8.5)"><use href="#truck" width="30" height="17"/></g>
-      <animateMotion dur="2.6s" repeatCount="indefinite" rotate="auto" path="M 224 164 L 248 164"/></g>
-    <g color="#ff6b6b" opacity="0.7"><g transform="translate(-15,-8.5) scale(-1,1) translate(-30,0)"><use href="#truck" width="30" height="17"/></g>
-      <animateMotion dur="2.6s" repeatCount="indefinite" begin="1.3s" rotate="auto" path="M 248 172 L 224 172"/></g>
+    <g color="#ff6b6b"><g transform="translate(-18,-11)"><use href="#icon-truck" width="36" height="20"/></g>
+      <animateMotion dur="2.8s" repeatCount="indefinite" rotate="auto" path="M 212 195 C 222 195, 228 195, 248 210"/></g>
+    <g color="#ff6b6b" opacity="0.65"><g transform="translate(-18,-11) scale(-1,1) translate(-36,0)"><use href="#icon-truck" width="36" height="20"/></g>
+      <animateMotion dur="2.8s" repeatCount="indefinite" begin="1.4s" rotate="auto" path="M 248 218 C 238 218, 232 218, 212 203"/></g>
 
-    <!-- Web ↔ API -->
-    <g color="#22d3ee" opacity="0.95"><g transform="translate(-15,-8.5)"><use href="#truck" width="30" height="17"/></g>
-      <animateMotion dur="4.2s" repeatCount="indefinite" rotate="auto" path="M 224 254 L 452 254"/></g>
-    <g color="#22d3ee" opacity="0.7"><g transform="translate(-15,-8.5) scale(-1,1) translate(-30,0)"><use href="#truck" width="30" height="17"/></g>
-      <animateMotion dur="4.2s" repeatCount="indefinite" begin="2.1s" rotate="auto" path="M 452 262 L 224 262"/></g>
+    <g color="#38bdf8"><g transform="translate(-18,-11)"><use href="#icon-truck" width="36" height="20"/></g>
+      <animateMotion dur="4.5s" repeatCount="indefinite" rotate="auto" path="M 212 355 L 432 355"/></g>
+    <g color="#38bdf8" opacity="0.65"><g transform="translate(-18,-11) scale(-1,1) translate(-36,0)"><use href="#icon-truck" width="36" height="20"/></g>
+      <animateMotion dur="4.5s" repeatCount="indefinite" begin="2.2s" rotate="auto" path="M 432 368 L 212 368"/></g>
 
-    <!-- MCP ↔ API -->
-    <g color="#34d399" opacity="0.95"><g transform="translate(-15,-8.5)"><use href="#truck" width="30" height="17"/></g>
-      <animateMotion dur="3s" repeatCount="indefinite" rotate="auto" path="M 430 208 L 452 248"/></g>
-    <g color="#34d399" opacity="0.7"><g transform="translate(-15,-8.5) scale(-1,1) translate(-30,0)"><use href="#truck" width="30" height="17"/></g>
-      <animateMotion dur="3s" repeatCount="indefinite" begin="1.5s" rotate="auto" path="M 452 256 L 430 216"/></g>
+    <g color="#34d399"><g transform="translate(-18,-11)"><use href="#icon-truck" width="36" height="20"/></g>
+      <animateMotion dur="3.2s" repeatCount="indefinite" rotate="auto" path="M 412 250 C 430 280, 440 300, 448 320"/></g>
+    <g color="#34d399" opacity="0.65"><g transform="translate(-18,-11) scale(-1,1) translate(-36,0)"><use href="#icon-truck" width="36" height="20"/></g>
+      <animateMotion dur="3.2s" repeatCount="indefinite" begin="1.6s" rotate="auto" path="M 448 332 C 440 312, 430 292, 412 262"/></g>
 
-    <!-- API ↔ catalog -->
-    <g color="#c4b5fd" opacity="0.95"><g transform="translate(-15,-8.5)"><use href="#truck" width="30" height="17"/></g>
-      <animateMotion dur="2s" repeatCount="indefinite" rotate="auto" path="M 618 174 L 642 174"/></g>
-    <g color="#c4b5fd" opacity="0.7"><g transform="translate(-15,-8.5) scale(-1,1) translate(-30,0)"><use href="#truck" width="30" height="17"/></g>
-      <animateMotion dur="2s" repeatCount="indefinite" begin="1s" rotate="auto" path="M 642 182 L 618 182"/></g>
-
-    <!-- API ↔ orders -->
-    <g color="#a78bfa" opacity="0.95"><g transform="translate(-15,-8.5)"><use href="#truck" width="30" height="17"/></g>
-      <animateMotion dur="2s" repeatCount="indefinite" begin="0.3s" rotate="auto" path="M 618 264 L 642 264"/></g>
-    <g color="#a78bfa" opacity="0.7"><g transform="translate(-15,-8.5) scale(-1,1) translate(-30,0)"><use href="#truck" width="30" height="17"/></g>
-      <animateMotion dur="2s" repeatCount="indefinite" begin="1.3s" rotate="auto" path="M 642 272 L 618 272"/></g>
-
-    <!-- orders ↔ inventory -->
-    <g color="#fb7185" opacity="0.95"><g transform="translate(-15,-8.5)"><use href="#truck" width="28" height="16"/></g>
-      <animateMotion dur="3.2s" repeatCount="indefinite" rotate="auto" path="M 726 302 L 726 338 L 658 338"/></g>
-    <g color="#fb7185" opacity="0.7"><g transform="translate(-15,-8.5) scale(-1,1) translate(-30,0)"><use href="#truck" width="28" height="16"/></g>
-      <animateMotion dur="3.2s" repeatCount="indefinite" begin="1.6s" rotate="auto" path="M 658 346 L 726 346 L 726 310"/></g>
-
-    <!-- catalog ↔ DB -->
-    <g color="#fb923c" opacity="0.95"><g transform="translate(-15,-8.5)"><use href="#truck" width="28" height="16"/></g>
-      <animateMotion dur="1.8s" repeatCount="indefinite" rotate="auto" path="M 812 172 L 802 172"/></g>
-    <g color="#fb923c" opacity="0.7"><g transform="translate(-15,-8.5) scale(-1,1) translate(-30,0)"><use href="#truck" width="28" height="16"/></g>
-      <animateMotion dur="1.8s" repeatCount="indefinite" begin="0.9s" rotate="auto" path="M 802 180 L 812 180"/></g>
-
-    <!-- orders ↔ DB -->
-    <g color="#f97316" opacity="0.95"><g transform="translate(-15,-8.5)"><use href="#truck" width="28" height="16"/></g>
-      <animateMotion dur="1.8s" repeatCount="indefinite" begin="0.2s" rotate="auto" path="M 812 262 L 802 262"/></g>
-    <g color="#f97316" opacity="0.7"><g transform="translate(-15,-8.5) scale(-1,1) translate(-30,0)"><use href="#truck" width="28" height="16"/></g>
-      <animateMotion dur="1.8s" repeatCount="indefinite" begin="1.1s" rotate="auto" path="M 802 270 L 812 270"/></g>
-
-    <!-- inventory ↔ DB -->
-    <g color="#4ade80" opacity="0.95"><g transform="translate(-15,-8.5)"><use href="#truck" width="28" height="16"/></g>
-      <animateMotion dur="1.8s" repeatCount="indefinite" begin="0.4s" rotate="auto" path="M 812 352 L 802 352"/></g>
-    <g color="#4ade80" opacity="0.7"><g transform="translate(-15,-8.5) scale(-1,1) translate(-30,0)"><use href="#truck" width="28" height="16"/></g>
-      <animateMotion dur="1.8s" repeatCount="indefinite" begin="1.3s" rotate="auto" path="M 802 360 L 812 360"/></g>
+    <!-- Packets on lambda-DB (lighter than trucks) -->
+    <g color="#fb923c"><use href="#icon-packet" width="12" height="12" transform="translate(-6,-6)"/>
+      <animateMotion dur="1.6s" repeatCount="indefinite" path="M 868 230 L 918 230"/></g>
+    <g color="#fb923c" opacity="0.5"><use href="#icon-packet" width="12" height="12" transform="translate(-6,-6)"/>
+      <animateMotion dur="1.6s" repeatCount="indefinite" begin="0.8s" path="M 918 242 L 868 242"/></g>
+    <g color="#f97316"><use href="#icon-packet" width="12" height="12" transform="translate(-6,-6)"/>
+      <animateMotion dur="1.6s" repeatCount="indefinite" begin="0.2s" path="M 868 370 L 918 370"/></g>
+    <g color="#4ade80"><use href="#icon-packet" width="12" height="12" transform="translate(-6,-6)"/>
+      <animateMotion dur="1.6s" repeatCount="indefinite" begin="0.4s" path="M 868 500 L 918 500"/></g>
   </g>
-
-  <!-- Sidebar header continuation on main canvas edge -->
-  <line x1="888" y1="88" x2="888" y2="488" stroke="#374151" stroke-width="1"/>
 </svg>

@@ -18,7 +18,7 @@ npm run build
 ## End-to-end install (from repo root `supply-chain/`)
 
 ```bash
-cp .env.example .env
+cp env_example.txt .env
 # Edit .env — AWS credentials only
 
 export AWS_REGION=us-east-2
@@ -43,10 +43,22 @@ npm run tf:write-generated-env
 
 ## After apply
 
-1. **`supply-chain/.env`**: only `AWS_*` credentials (and optional overrides). See [`.env.example`](../../.env.example).
+1. **`supply-chain/.env`**: only `AWS_*` credentials (and optional overrides). See [`env_example.txt`](../../env_example.txt).
 2. **`supply-chain/.generated/.env`**: created by `npm run tf:write-generated-env` or `npm run provision:aws` — `VITE_*`, `NEXT_PUBLIC_*`, `SUPPLY_CHAIN_APP_SECRET_NAME`.
 3. **IAM**: local MCP/seed need **`secretsmanager:GetSecretValue`** on the app secret (output **`nitrostack_mcp_operator_policy_json`**).
 4. **Seed**: `npm run seed` from `supply-chain/` (or `RUN_SEED=1` during provision).
+
+## Destroy / rollback
+
+From `supply-chain/`:
+
+```bash
+export AWS_REGION=us-east-2
+export TF_AUTO_APPROVE=1
+npm run destroy:aws
+```
+
+Or `bash scripts/destroy-terraform-stack.sh`. Interactive mode prompts you to type `destroy` before proceeding. See [README rollback section](../../README.md#rollback--teardown) for cost and cleanup notes.
 
 ## Remote state (recommended for teams)
 

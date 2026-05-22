@@ -51,8 +51,8 @@ export class SupplyChainApiService {
     return c.httpApiBaseUrl.replace(/\/$/, '');
   }
 
-  private async authHeaders(correlationId: string) {
-    const token = await this.tokens.getAccessToken(correlationId);
+  private async authHeaders(correlationId: string, userToken?: string) {
+    const token = userToken || await this.tokens.getAccessToken(correlationId);
     return {
       authorization: `Bearer ${token}`,
       'content-type': 'application/json',
@@ -60,11 +60,11 @@ export class SupplyChainApiService {
     } as const;
   }
 
-  async listProducts(correlationId: string) {
+  async listProducts(correlationId: string, userToken?: string) {
     try {
       const baseUrl = await this.baseUrl();
       const res = await fetch(`${baseUrl}/v1/catalog/products`, {
-        headers: await this.authHeaders(correlationId)
+        headers: await this.authHeaders(correlationId, userToken)
       });
       const text = await res.text();
       if (!res.ok) {
@@ -86,11 +86,11 @@ export class SupplyChainApiService {
     }
   }
 
-  async getProduct(correlationId: string, productId: string) {
+  async getProduct(correlationId: string, productId: string, userToken?: string) {
     try {
       const baseUrl = await this.baseUrl();
       const res = await fetch(`${baseUrl}/v1/catalog/products/${encodeURIComponent(productId)}`, {
-        headers: await this.authHeaders(correlationId)
+        headers: await this.authHeaders(correlationId, userToken)
       });
       const text = await res.text();
       if (!res.ok) {
@@ -112,13 +112,14 @@ export class SupplyChainApiService {
 
   async createOrder(
     correlationId: string,
-    body: { customerRef: string; lines: Array<{ sku: string; quantity: number }> }
+    body: { customerRef: string; lines: Array<{ sku: string; quantity: number }> },
+    userToken?: string
   ) {
     try {
       const baseUrl = await this.baseUrl();
       const res = await fetch(`${baseUrl}/v1/orders`, {
         method: 'POST',
-        headers: await this.authHeaders(correlationId),
+        headers: await this.authHeaders(correlationId, userToken),
         body: JSON.stringify(body)
       });
       const text = await res.text();
@@ -139,11 +140,11 @@ export class SupplyChainApiService {
     }
   }
 
-  async listOrders(correlationId: string) {
+  async listOrders(correlationId: string, userToken?: string) {
     try {
       const baseUrl = await this.baseUrl();
       const res = await fetch(`${baseUrl}/v1/orders`, {
-        headers: await this.authHeaders(correlationId)
+        headers: await this.authHeaders(correlationId, userToken)
       });
       const text = await res.text();
       if (!res.ok) {
@@ -163,11 +164,11 @@ export class SupplyChainApiService {
     }
   }
 
-  async getOrder(correlationId: string, orderId: string) {
+  async getOrder(correlationId: string, orderId: string, userToken?: string) {
     try {
       const baseUrl = await this.baseUrl();
       const res = await fetch(`${baseUrl}/v1/orders/${encodeURIComponent(orderId)}`, {
-        headers: await this.authHeaders(correlationId)
+        headers: await this.authHeaders(correlationId, userToken)
       });
       const text = await res.text();
       if (!res.ok) {
@@ -187,12 +188,12 @@ export class SupplyChainApiService {
     }
   }
 
-  async cancelOrder(correlationId: string, orderId: string) {
+  async cancelOrder(correlationId: string, orderId: string, userToken?: string) {
     try {
       const baseUrl = await this.baseUrl();
       const res = await fetch(`${baseUrl}/v1/orders/${encodeURIComponent(orderId)}/cancel`, {
         method: 'POST',
-        headers: await this.authHeaders(correlationId)
+        headers: await this.authHeaders(correlationId, userToken)
       });
       const text = await res.text();
       if (!res.ok) {

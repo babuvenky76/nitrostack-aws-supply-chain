@@ -18,6 +18,12 @@ resource "aws_dynamodb_table" "products" {
   point_in_time_recovery {
     enabled = var.environment == "prod"
   }
+
+  tags = merge(local.extended_tags, {
+    Component    = "datastore"
+    ResourceRole = "product-catalog"
+    TablePurpose = "SKU-and-product-master-data"
+  })
 }
 
 resource "aws_dynamodb_table" "inventory" {
@@ -33,6 +39,12 @@ resource "aws_dynamodb_table" "inventory" {
   point_in_time_recovery {
     enabled = var.environment == "prod"
   }
+
+  tags = merge(local.extended_tags, {
+    Component    = "datastore"
+    ResourceRole = "inventory"
+    TablePurpose = "stock-levels-and-reservations"
+  })
 }
 
 resource "aws_dynamodb_table" "orders" {
@@ -65,4 +77,10 @@ resource "aws_dynamodb_table" "orders" {
   point_in_time_recovery {
     enabled = var.environment == "prod"
   }
+
+  tags = merge(local.extended_tags, {
+    Component    = "datastore"
+    ResourceRole = "orders"
+    TablePurpose = "order-records-with-GSI1-listing"
+  })
 }

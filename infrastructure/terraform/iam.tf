@@ -16,12 +16,14 @@ data "aws_iam_policy_document" "lambda_assume" {
 }
 
 resource "aws_iam_role" "catalog" {
+  provider             = aws.iam_roles
   name                 = "${var.project_name}-catalog-lambda"
   assume_role_policy   = data.aws_iam_policy_document.lambda_assume.json
   permissions_boundary = local.iam_permissions_boundary_arn
+  description          = "Lambda execution role: catalog service reads products from DynamoDB (${var.project_name}-products)."
 
   tags = {
-    User = local.owner_tag_user
+    User = var.owner_user
   }
 }
 
@@ -53,12 +55,14 @@ resource "aws_iam_role_policy" "catalog_ddb" {
 }
 
 resource "aws_iam_role" "inventory" {
+  provider             = aws.iam_roles
   name                 = "${var.project_name}-inventory-lambda"
   assume_role_policy   = data.aws_iam_policy_document.lambda_assume.json
   permissions_boundary = local.iam_permissions_boundary_arn
+  description          = "Lambda execution role: inventory service CRUD on DynamoDB (${var.project_name}-inventory)."
 
   tags = {
-    User = local.owner_tag_user
+    User = var.owner_user
   }
 }
 
@@ -93,12 +97,14 @@ resource "aws_iam_role_policy" "inventory_ddb" {
 }
 
 resource "aws_iam_role" "orders" {
+  provider             = aws.iam_roles
   name                 = "${var.project_name}-orders-lambda"
   assume_role_policy   = data.aws_iam_policy_document.lambda_assume.json
   permissions_boundary = local.iam_permissions_boundary_arn
+  description          = "Lambda execution role: orders service CRUD + invokes catalog and inventory Lambdas."
 
   tags = {
-    User = local.owner_tag_user
+    User = var.owner_user
   }
 }
 

@@ -15,7 +15,8 @@ const root = join(__dirname, '..');
 const tfDir = join(root, 'infrastructure/terraform');
 
 function tfOutputs() {
-  const raw = execFileSync('terraform', ['-chdir', tfDir, 'output', '-json'], {
+  const raw = execFileSync('terraform', ['output', '-json'], {
+    cwd: tfDir,
     encoding: 'utf8',
     stdio: ['ignore', 'pipe', 'inherit']
   });

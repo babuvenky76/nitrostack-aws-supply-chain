@@ -1,5 +1,6 @@
 import { existsSync } from 'fs';
-import { loadEnvConfig } from '@next/env';
+import pkg from '@next/env';
+const { loadEnvConfig } = pkg;
 import { dirname, join, resolve } from 'path';
 import { fileURLToPath } from 'url';
 
@@ -16,6 +17,14 @@ if (existsSync(join(generatedRoot, '.env'))) {
 const nextConfig = {
   reactStrictMode: true,
   transpilePackages: ['@nitrostack/widgets'],
+  env: {
+    VITE_COGNITO_AUTHORITY: process.env.VITE_COGNITO_AUTHORITY || process.env.NEXT_PUBLIC_COGNITO_AUTHORITY,
+    VITE_COGNITO_WEB_CLIENT_ID: process.env.VITE_COGNITO_WEB_CLIENT_ID || process.env.NEXT_PUBLIC_COGNITO_WEB_CLIENT_ID,
+    VITE_AWS_HTTP_API_BASE_URL: process.env.VITE_AWS_HTTP_API_BASE_URL || process.env.NEXT_PUBLIC_AWS_HTTP_API_BASE_URL,
+    NEXT_PUBLIC_COGNITO_AUTHORITY: process.env.NEXT_PUBLIC_COGNITO_AUTHORITY || process.env.VITE_COGNITO_AUTHORITY,
+    NEXT_PUBLIC_COGNITO_WEB_CLIENT_ID: process.env.NEXT_PUBLIC_COGNITO_WEB_CLIENT_ID || process.env.VITE_COGNITO_WEB_CLIENT_ID,
+    NEXT_PUBLIC_AWS_HTTP_API_BASE_URL: process.env.NEXT_PUBLIC_AWS_HTTP_API_BASE_URL || process.env.VITE_AWS_HTTP_API_BASE_URL,
+  },
   ...(process.env.NODE_ENV === 'production' && {
     output: 'export',
     distDir: 'out',

@@ -6,13 +6,14 @@
 
 import { HealthCheck, HealthCheckInterface, HealthCheckResult } from '@nitrostack/core';
 import { GetCallerIdentityCommand, STSClient } from '@aws-sdk/client-sts';
+import { randomUUID } from 'node:crypto';
 
 @HealthCheck({ name: 'aws-connectivity', description: 'STS GetCallerIdentity against your AWS account', interval: 60 })
 export class AwsConnectivityHealthCheck implements HealthCheckInterface {
   private readonly sts = new STSClient({});
 
   async check(): Promise<HealthCheckResult> {
-    const correlationId = crypto.randomUUID();
+    const correlationId = randomUUID();
     try {
       const id = await this.sts.send(new GetCallerIdentityCommand({}));
       const acct = id.Account ?? '';
@@ -28,18 +29,22 @@ export class AwsConnectivityHealthCheck implements HealthCheckInterface {
     } catch (err) {
       const message = err instanceof Error ? err.message : String(err);
       const stack = err instanceof Error ? err.stack : undefined;
-      process.stderr.write(
-        JSON.stringify({
-          level: 'ERROR',
-          correlationId,
-          where: 'AwsConnectivityHealthCheck',
-          message,
-          stack
-        }) + '\n'
-      );
+      try {
+        process.stderr.write(
+          JSON.stringify({
+            level: 'WARN',
+            correlationId,
+            where: 'AwsConnectivityHealthCheck',
+            message,
+            stack
+          }) + '\n'
+        );
+      } catch (e) {
+        // Prevent EPIPE crash if stderr is closed
+      }
       return {
-        status: 'down',
-        message: 'AWS credential check failed',
+        status: 'degraded',
+        message: 'AWS credential check failed or keys expired. Using browser Cognito JWT auth path.',
         details: { correlationId, error: message }
       };
     }

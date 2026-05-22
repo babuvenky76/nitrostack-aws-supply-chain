@@ -11,9 +11,12 @@
     "web-portal"
   ],
   "scripts": {
+    "dev": "npm run dev -w @nitrostack-demo/supply-chain-mcp",
+    "start": "npm run start -w @nitrostack-demo/supply-chain-mcp",
     "build": "npm run build -w @supply-chain/contracts && npm run build -w @supply-chain/service-catalog && npm run build -w @supply-chain/service-inventory && npm run build -w @supply-chain/service-orders && npm run build -w @nitrostack-demo/supply-chain-mcp",
     "seed": "npx tsx scripts/seed-dynamodb.ts",
     "provision:aws": "bash scripts/provision-terraform-stack.sh",
+    "destroy:aws": "CLEAN_LOCAL=1 bash scripts/destroy-terraform-stack.sh",
     "tf:write-generated-env": "node scripts/write-terraform-generated-env.mjs"
   },
   "engines": {

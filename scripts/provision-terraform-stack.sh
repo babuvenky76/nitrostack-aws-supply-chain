@@ -64,7 +64,7 @@ node "${ROOT}/scripts/write-terraform-generated-env.mjs"
 echo ""
 echo "==> Done."
 echo "    Secret name: $(cd "${TF_DIR}" && terraform output -raw supply_chain_app_secret_name)"
-echo "    Put only AWS credentials in supply-chain/.env — see .env.example"
+echo "    Put only AWS credentials in supply-chain/.env — see env_example.txt"
 echo "    Optional IAM for local MCP/seed: terraform -chdir=infrastructure/terraform output -raw nitrostack_mcp_operator_policy_json"
 echo ""
 

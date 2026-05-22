@@ -9,10 +9,18 @@ import { SupplyChainModule } from './modules/supply-chain/supply-chain.module.js
 import { SystemHealthCheck } from './health/system.health.js';
 import { AwsConnectivityHealthCheck } from './health/aws-connectivity.health.js';
 
+// Get log level from environment, default to 'info'
+const rawLogLevel = (process.env.LOG_LEVEL || 'info').toLowerCase();
+const logLevel = (['debug', 'info', 'warn', 'error'].includes(rawLogLevel) ? rawLogLevel : 'info') as
+  | 'debug'
+  | 'info'
+  | 'warn'
+  | 'error';
+
 @McpApp({
   module: AppModule,
   server: { name: 'SupplyChain-AWS-MCP', version: '1.0.0' },
-  logging: { level: 'info' }
+  logging: { level: logLevel }
 })
 @Module({
   name: 'app',

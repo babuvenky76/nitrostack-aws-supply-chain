@@ -5,7 +5,6 @@
  * @debugging CloudWatch Logs — filter `correlationId` or `where` (`catalog.*`). 5xx responses use generic text + correlationId.
  */
 
-import { randomUUID } from 'node:crypto';
 import { DynamoDBClient } from '@aws-sdk/client-dynamodb';
 import { DynamoDBDocumentClient, GetCommand, ScanCommand } from '@aws-sdk/lib-dynamodb';
 import {
@@ -14,27 +13,11 @@ import {
   userFacing500Message,
   type Product
 } from '@supply-chain/contracts';
+import { json, notFoundError, internalServerError, successResponse } from '../../common/http-response.js';
+import { readCorrelationId } from '../../common/correlation.js';
+import { validateSKU } from '../../common/path-validation.js';
 
 const ddb = DynamoDBDocumentClient.from(new DynamoDBClient({}));
-
-function json(statusCode: number, body: unknown, correlationId: string) {
-  return {
-    statusCode,
-    headers: {
-      'content-type': 'application/json',
-      'x-correlation-id': correlationId
-    },
-    body: JSON.stringify(body)
-  };
-}
-
-function readCorrelationId(event: { headers?: Record<string, string | undefined> }) {
-  const h = event.headers ?? {};
-  const key = Object.keys(h).find((k) => k.toLowerCase() === 'x-correlation-id');
-  const found = key ? h[key] : undefined;
-  if (found && found.trim()) return found.trim();
-  return randomUUID();
-}
 
 type InternalCatalogEvent = {
   internal: true;
@@ -56,7 +39,13 @@ export const handler = async (event: {
 } | InternalCatalogEvent) => {
   // --- Internal synchronous invoke (orders → catalog) — not behind API Gateway ---
   if (isInternalCatalogEvent(event)) {
-    const { correlationId, sku } = event;
+    const { correlationId, sku: rawSku } = event;
+    let sku: string;
+    try {
+      sku = validateSKU(rawSku);
+    } catch {
+      return { ok: false as const, error: { code: 'INVALID_FORMAT', message: 'Invalid SKU format' } };
+    }
     const tableName = process.env.PRODUCTS_TABLE_NAME;
     if (!tableName) {
       logLambdaError(correlationId, 'catalog.internal.config', new Error('PRODUCTS_TABLE_NAME is not set'));
@@ -110,9 +99,16 @@ export const handler = async (event: {
       return json(200, { ok: true, products }, correlationId);
     }
 
-    const singleMatch = path.match(/\/v1\/catalog\/products\/([^/]+)$/);
-    const productId = event.pathParameters?.productId ?? singleMatch?.[1];
-    if (productId) {
+    const singleMatch = path.match(/^\/v1\/catalog\/products\/([A-Za-z0-9_-]+)$/);
+    const productIdParam = event.pathParameters?.productId ?? singleMatch?.[1];
+    if (productIdParam) {
+      let productId: string;
+      try {
+        productId = validateSKU(productIdParam);
+      } catch {
+        return json(400, { ok: false, error: { code: 'INVALID_FORMAT', message: 'Invalid product ID format' } }, correlationId);
+      }
+
       const got = await ddb.send(
         new GetCommand({
           TableName: tableName,
@@ -120,7 +116,7 @@ export const handler = async (event: {
         })
       );
       if (!got.Item) {
-        return json(404, { ok: false, error: { code: 'NOT_FOUND', message: 'Product not found', productId } }, correlationId);
+        return notFoundError('Product not found', correlationId);
       }
       const parsed = productSchema.safeParse(got.Item);
       if (!parsed.success) {
@@ -133,16 +129,6 @@ export const handler = async (event: {
     return json(404, { ok: false, error: { code: 'ROUTE_NOT_FOUND', message: 'No handler for this path' } }, correlationId);
   } catch (err) {
     logLambdaError(correlationId, 'catalog.handler', err);
-    return json(
-      500,
-      {
-        ok: false,
-        error: {
-          code: 'CATALOG_FAILURE',
-          message: userFacing500Message(correlationId)
-        }
-      },
-      correlationId
-    );
+    return internalServerError(correlationId);
   }
 };

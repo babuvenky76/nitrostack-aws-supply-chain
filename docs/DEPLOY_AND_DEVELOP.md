@@ -8,7 +8,7 @@ From `module-repos/aws/supply-chain/`:
 
 ```bash
 export AWS_REGION=us-east-2
-cp .env.example .env
+cp env_example.txt .env
 # Edit .env: set AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_SESSION_TOKEN (if any), AWS_REGION
 
 # Non-interactive apply + write .generated/.env + optional seed:
