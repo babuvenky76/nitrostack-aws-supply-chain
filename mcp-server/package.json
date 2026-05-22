@@ -15,7 +15,7 @@
     "@aws-sdk/client-secrets-manager": "^3.699.0",
     "@aws-sdk/client-sts": "^3.699.0",
     "@nitrostack/core": "^1.0.3",
-    "dotenv": "^16.4.5",
+    "dotenv": "^17.4.2",
     "zod": "^3.23.8"
   },
   "devDependencies": {
