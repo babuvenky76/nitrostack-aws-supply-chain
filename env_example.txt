@@ -1,0 +1,96 @@
+# ==============================================================================
+# NitroStack AWS Supply Chain Reference — Environment Configuration Template
+# ==============================================================================
+# Copy this file to `.env` in this directory to configure your local environment:
+#   cp env_example.txt .env
+#
+# Note: Variables starting with VITE_* and NEXT_PUBLIC_* are populated automatically 
+# inside `.generated/.env` when you run `npm run provision:aws` or 
+# `npm run tf:write-generated-env` after provisioning Terraform.
+# ==============================================================================
+
+# ------------------------------------------------------------------------------
+# 1. AWS Credentials & Region (Required for Local Development & CLI commands)
+# ------------------------------------------------------------------------------
+
+# AWS Access Key ID for local authentication (e.g., AKIA...)
+AWS_ACCESS_KEY_ID=
+
+# AWS Secret Access Key corresponding to the Access Key ID
+AWS_SECRET_ACCESS_KEY=
+
+# AWS Session Token (Required if using temporary credentials or SSO login)
+AWS_SESSION_TOKEN=
+
+# AWS Region where your Terraform stack is deployed and where SDK clients connect
+AWS_REGION=us-east-2
+
+
+# ------------------------------------------------------------------------------
+# 2. Local Server & Logging Configurations
+# ------------------------------------------------------------------------------
+
+# The port where the local MCP/web services run
+PORT=3000
+
+# Logging level for the MCP process. Options: debug, info, warn, error
+LOG_LEVEL=info
+
+
+# ------------------------------------------------------------------------------
+# 3. NitroStack & Secrets Manager Configuration
+# ------------------------------------------------------------------------------
+
+# The name of the project prefix used in Terraform. Defaults to 'nsupply'
+# SUPPLY_CHAIN_PROJECT_NAME=nsupply
+
+# The AWS Secrets Manager Secret Name where the unified JSON config is stored
+# SUPPLY_CHAIN_APP_SECRET_NAME=nsupply/nitrostack-app
+
+# The full AWS Secrets Manager Secret ARN. (Normally resolved dynamically)
+# SUPPLY_CHAIN_APP_SECRET_ARN=
+
+
+# ------------------------------------------------------------------------------
+# 4. DynamoDB Local Table Name Overrides (Optional / Read from Secrets Manager)
+# ------------------------------------------------------------------------------
+
+# Override the table name for catalog products (e.g. nsupply-products)
+# PRODUCTS_TABLE_NAME=
+
+# Override the table name for inventory (e.g. nsupply-inventory)
+# INVENTORY_TABLE_NAME=
+
+# Override the table name for orders (e.g. nsupply-orders)
+# ORDERS_TABLE_NAME=
+
+
+# ------------------------------------------------------------------------------
+# 5. Cognito OIDC & API Gateway Integration (Vite/React Portal Client)
+# ------------------------------------------------------------------------------
+
+# The issuer URL for the Cognito User Pool (OIDC Authority)
+VITE_COGNITO_AUTHORITY=
+
+# The Web Client App ID created inside the Cognito User Pool
+VITE_COGNITO_WEB_CLIENT_ID=
+
+# The URL where Cognito redirects the browser after successful login
+VITE_OIDC_REDIRECT_URI=http://localhost:5174/
+
+# The base URL of the Amazon API Gateway HTTP API
+VITE_AWS_HTTP_API_BASE_URL=
+
+
+# ------------------------------------------------------------------------------
+# 6. Next.js Public Environment Mirror (Used by Next.js components)
+# ------------------------------------------------------------------------------
+
+# Mirror of the base URL of the API Gateway HTTP API for Next.js hydration
+NEXT_PUBLIC_AWS_HTTP_API_BASE_URL=
+
+# Mirror of the OIDC Issuer URL for Next.js OIDC integration
+NEXT_PUBLIC_COGNITO_AUTHORITY=
+
+# Mirror of the Web Client App ID for Next.js OIDC integration
+NEXT_PUBLIC_COGNITO_WEB_CLIENT_ID=
